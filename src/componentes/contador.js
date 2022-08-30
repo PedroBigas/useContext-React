@@ -1,15 +1,17 @@
-import React, { useContext, useState } from "react";
-import {contadorContexto} from '../contadorContexto'
+import React from "react";
+import {useSelector, useDispatch} from 'react-redux'
 
 
 function Contador(props){
 
-    const [contagem, setContagem] = useContext(contadorContexto)
+    const contador = useSelector((state) => {return state})
+    const dispatch = useDispatch()
     return(
         <div>
-            <div>{contagem}</div>
-            <button onClick={()=>{setContagem(anterior=>anterior - 1)}}>-</button>
-            <button onClick={()=>{setContagem(anterior=>anterior + 1)}}>+</button>
+            <div>{contador}</div>
+            <button onClick={()=> { dispatch({type:'DECREMENT'}) }}>-</button>
+            <button onClick={()=> {  dispatch({type:'INCREMENT'})}}>+</button>
+
         </div>
     )
 

@@ -2,17 +2,24 @@ import React from 'react';
 import './App.css';
 import Contador from './componentes/contador';
 import Cabecalho from './componentes/Cabecalho';
-import {ContadorProvider} from './contadorContexto'
-
+import {createStore} from 'redux'
+import contadorReducer from './redcucers/contadorReducer';
+import {Provider} from 'react-redux'
 
 function App() {
+
+  const store = createStore(contadorReducer)
+
   return (
+
+
     <div className="App">
-        <ContadorProvider>
+        <Provider store={store}>
             <Cabecalho></Cabecalho>
             <Contador></Contador>
-        </ContadorProvider>
+        </Provider>
     </div>
+
   );
 }
 
